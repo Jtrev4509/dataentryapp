@@ -1,4 +1,4 @@
-# data-entry-app
+# vue-project
 
 ## Project setup
 ```

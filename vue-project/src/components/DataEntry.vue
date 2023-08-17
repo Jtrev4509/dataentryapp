@@ -1,4 +1,5 @@
 <template>
+    <div class="centered-container">
     <div class="user-info">
       <div class="input-row">
         <label for="name">*Name:</label>
@@ -16,49 +17,85 @@
         <label for="hometown">Hometown:</label>
         <input v-model="user.hometown" type="text" id="hometown">
       </div>
-      <div>* = required field</div>
+      <div class="input-row">* = required field</div>
     </div>
     <button @click="submitForm">Submit</button>
+    </div>
   </template>
   
   <script>
-  export default {
-    data() {
-      return {
-        user: {
-          name: '',
-          age: null,
-          title: '',
-          hometown: ''
-        }
-      };
-    },
-    methods: {
-        submitForm() {
-            const user = {
-                name: this.user.name,
-                age: this.user.age,
-                title: this.user.title,
-                hometown: this.user.hometown
-            };
-            console.log('User data submitted:', user);
-        }
+export default {
+  data() {
+    return {
+      user: {
+        name: '',
+        age: null,
+        title: '',
+        hometown: ''
+      }
+    };
+  },
+  methods: {
+    submitForm() {
+      if (this.user.name && this.user.title) {
+        // Only submit if name and title are filled
+        const user = {
+          name: this.user.name,
+          age: this.user.age,
+          title: this.user.title,
+          hometown: this.user.hometown
+        };
+        this.$router.push({ name: 'users', params: { user } });
+      } else {
+        // Show error message or take appropriate action
+        alert('Name and title are required fields.');
+      }
     }
   }
-  </script>
-  
-  <style scoped>
-  .user-info {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  .input-row {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: inline-block;
-    width: 100px;
-  }
-  </style>
+}
+</script>
+
+<style scoped>
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.user-info {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-row {
+  margin-bottom: 15px;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+</style>
+ 

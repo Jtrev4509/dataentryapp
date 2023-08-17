@@ -1,15 +1,12 @@
 <template>
   <div class="app">
-   <data-entry></data-entry>
+    <router-view :user="user"></router-view>
   </div>
 </template>
 
 <script>
-import DataEntry from './components/DataEntry.vue'
 export default {
-  components: {
-    DataEntry
-  }
+  name: 'App'
 }
 </script>
 

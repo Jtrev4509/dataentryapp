@@ -2,11 +2,11 @@ package org.example.controller;
 
 import org.example.dao.DataDao;
 import org.example.model.Data;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -19,11 +19,12 @@ public class DataController {
         this.dataDao = dataDao;
     }
 
-    @RequestMapping(path = "/users", method = RequestMethod.GET)
+    @RequestMapping(path = "/usersList", method = RequestMethod.GET)
     public List<Data> listAllData () { return dataDao.findall();}
 
-//    @RequestMapping(path = "/input", method = RequestMethod.POST)
-//    public void createUserData (DataDao dataDao) {
-//        dataDao.createDataEntry();
-//    }
-}
+    @RequestMapping(path = "/", method = RequestMethod.POST)
+    public void createUserData(@RequestBody Data data) {
+        dataDao.createDataEntry(data.getName(), data.getAge(), data.getTitle(), data.getHometown());
+    }
+    }
+

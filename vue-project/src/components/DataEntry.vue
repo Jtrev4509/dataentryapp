@@ -1,6 +1,7 @@
 <template>
     <div class="centered-container">
     <div class="user-info">
+        <h2 class="input-row">ENTER YOUR INFO BELOW</h2>
       <div class="input-row">
         <label for="name">*Name:</label>
         <input v-model="user.name" type="text" id="name">
@@ -45,7 +46,8 @@ export default {
           title: this.user.title,
           hometown: this.user.hometown
         };
-        this.$router.push({ name: 'users', params: { user } });
+        this.$emit('user-submitted', user);
+        this.$router.push({ name: 'usersList', params: { user } });
       } else {
         // Show error message or take appropriate action
         alert('Name and title are required fields.');
@@ -60,7 +62,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   height: 100vh;
   font-family: Arial, sans-serif;
 }
@@ -86,7 +87,7 @@ label {
 
 button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: black;
   color: white;
   border: none;
   border-radius: 5px;
@@ -95,7 +96,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: grey;
 }
 </style>
  

@@ -11,12 +11,12 @@ const router = new Router({
     routes: [
         {
             path: "/",
-            name: "DataEntry",
+            name: 'home',
             component: DataEntry
         },
         {
-            path: "/users",
-            name: "users",
+            path: "/usersList",
+            name: "usersList",
             component: ConfirmationPage,
             props: true
         }]

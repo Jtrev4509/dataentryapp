@@ -21,7 +21,7 @@ public class JdbcDataDao implements DataDao{
     @Override
     public List<Data> findall() {
         List<Data> users = new ArrayList<>();
-        String sql = "SELECT * from user_data";
+        String sql = "SELECT user_name, user_age, user_title, user_hometown from user_data";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()){
             Data user = mapRowToUser(results);

@@ -25,6 +25,8 @@
   </template>
   
   <script>
+  import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -37,22 +39,29 @@ export default {
     };
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       if (this.user.name && this.user.title) {
-        // Only submit if name and title are filled
         const user = {
           name: this.user.name,
           age: this.user.age,
           title: this.user.title,
           hometown: this.user.hometown
         };
-        this.$emit('user-submitted', user);
-        this.$router.push({ name: 'usersList', params: { user } });
+
+        try {
+          const response = await axios.post('http://localhost:8080/usersList', user);
+          console.log('User data submitted successfully:', response.data);
+        
+          this.$router.push({ name: 'usersList', params: { user } });
+        } catch (error) {
+          console.error('Error submitting user data:', error);
+        }
       } else {
-        // Show error message or take appropriate action
         alert('Name and title are required fields.');
       }
     }
+
+
   }
 }
 </script>

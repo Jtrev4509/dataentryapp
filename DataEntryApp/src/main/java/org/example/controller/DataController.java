@@ -22,7 +22,7 @@ public class DataController {
     @RequestMapping(path = "/usersList", method = RequestMethod.GET)
     public List<Data> listAllData () { return dataDao.findall();}
 
-    @RequestMapping(path = "/", method = RequestMethod.POST)
+    @RequestMapping(path = "/usersList", method = RequestMethod.POST)
     public void createUserData(@RequestBody Data data) {
         dataDao.createDataEntry(data.getName(), data.getAge(), data.getTitle(), data.getHometown());
     }

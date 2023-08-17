@@ -37,11 +37,11 @@
   export default {
     data() {
     return {
-      users: [], // Initialize an empty array to store fetched users
+      users: [], 
     };
   },
   mounted() {
-    this.fetchUsers(); // Fetch users when the component is mounted
+    this.fetchUsers();
   },
     props: ['user'],
     methods: {
@@ -54,7 +54,6 @@
         this.users = response.data;
       } catch (error) {
         console.error('Error fetching users:', error);
-        // Handle error appropriately
       }
     },
     }

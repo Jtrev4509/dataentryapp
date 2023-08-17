@@ -21,4 +21,9 @@ public class DataController {
 
     @RequestMapping(path = "/users", method = RequestMethod.GET)
     public List<Data> listAllData () { return dataDao.findall();}
+
+//    @RequestMapping(path = "/input", method = RequestMethod.POST)
+//    public void createUserData (DataDao dataDao) {
+//        dataDao.createDataEntry();
+//    }
 }

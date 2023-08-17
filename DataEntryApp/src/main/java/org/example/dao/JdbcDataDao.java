@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Component
 public class JdbcDataDao implements DataDao{
@@ -30,6 +29,15 @@ public class JdbcDataDao implements DataDao{
         }
         return users;
     }
+
+    @Override
+    public void createDataEntry(String username, int age, String title, String hometown){
+        String sql = "INSERT INTO user_data (user_name, user_age, user_title, user_hometown) " +
+                "VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, username, age, title, hometown);
+    }
+
+
 
     private Data mapRowToUser(SqlRowSet rs) {
         Data user = new Data();
